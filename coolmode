@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#TODO: manage multiple sessions!
+
+#setup tmux layout
+
+xdotool key 'ctrl+super+Up' # fullscreen terminal window
+
+SESSION=neo
+tmux new-session -d -s $SESSION
+tmux rename-window -t $SESSION:0 'cool'
+
+tmux split-window -h -p 76
+tmux split-window -h -p 30
+
+tmux send-keys -t cool.0 'cmatrix' ENTER
+tmux send-keys -t cool.2 'cmatrix' ENTER
+
+tmux select-pane -t cool.1
+tmux attach-session -t $SESSION

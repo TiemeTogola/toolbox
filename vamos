@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#TODO: allow multiple vamos by managing sessions properly (then servers..)
+
+#setup tmux layout
+
+xdotool key 'ctrl+super+Up' # fullscreen terminal window
+
+SESSION=$USER
+tmux new-session -d -s $SESSION
+tmux rename-window -t $SESSION:0 'chill'
+
+tmux split-window -h
+tmux split-window -v -p 40
+tmux split-window -v -p 30
+
+tmux send-keys -t chill.0 'vim notez/todo.md' ENTER
+#tmux send-keys -t chill.2 'm' ENTER '2x'
+tmux send-keys -t chill.2 'cmus' ENTER '2x'
+tmux send-keys -t chill.3 'octave' ENTER
+
+tmux new-window
+tmux rename-window 'mail'
+tmux send-keys -t mail.0 'mutt' ENTER
+
+tmux new-window
+tmux rename-window 'irc'
+tmux send-keys -t irc.0 'ssh $SCS' ENTER
+
+tmux new-window
+tmux rename-window 'code'
+tmux split-window -h
+tmux split-window -v -p 50
+tmux send-keys -t code.0 'vim' ENTER
+tmux send-keys -t code.1 'cd ~/workspace/' ENTER
+
+tmux select-window -t :0
+tmux select-pane -t chill.1
+tmux attach-session -t $SESSION
