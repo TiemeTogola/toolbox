@@ -15,7 +15,6 @@ tmux split-window -v -p 40
 tmux split-window -v -p 30
 
 tmux send-keys -t chill.0 'vim notez/todo.md' ENTER
-#tmux send-keys -t chill.2 'm' ENTER '2x'
 tmux send-keys -t chill.2 'cmus' ENTER '2x'
 tmux send-keys -t chill.3 'octave' ENTER
 
