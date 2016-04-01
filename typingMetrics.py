@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 # TODO: setup python 3
+#       see evdev docs
+#       integrate rxpy for async?
 
 import statsd
 import sqlite3
@@ -11,6 +13,12 @@ from evdev import ecodes
     # devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
     # for device in devices:
         # print(device.fn, device.name, device.phys)
+
+def to_sqlite(metric):
+    print
+
+def to_statsd(metric):
+    print
 
 def main():
     print(evdev.list_devices())
