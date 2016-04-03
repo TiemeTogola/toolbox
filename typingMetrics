@@ -37,7 +37,6 @@ def main():
     keyboard = evdev.InputDevice('/dev/input/event3')
     print(keyboard)
     print
-    print()
 
     for event in keyboard.read_loop():
         if event.type != ecodes.EV_KEY: continue
