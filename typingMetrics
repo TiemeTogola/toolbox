@@ -8,19 +8,13 @@ import argparse
 import os
 import platform
 import statsd
-import evdev #use the evdev event timestamp
+import evdev #use the evdev event timestamp (or other lib?)
 from evdev import util
 from evdev import ecodes
 
-# temporary, statsd will do the insert
-import sqlite3
-client = sqlite3.connect('/home/tieme/workspace/test.sqlite')
-def to_sqlite(metric):
-    cursor = client.cursor()
-    cursor.execute('INSERT INTO keypresses VALUES("1","press",' + str(metric) + ');')
-
 PREFIX = os.path.basename(__file__) + '.' + platform.node()
 statsd_client = statsd.StatsClient('localhost', 8125, PREFIX)
+
 def to_statsd(metric, value):
     statsd_client.gauge(metric, value, delta=True)
 
